@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-m-bottom_small">
+    <lightning-card title="Search Your Book" >     
+     <c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test>
+     <c-search-book onsearchtypedbook={handleSearch}></c-search-book>
+          
+    </lightning-card>
+</div>
+<div class="slds-m-bottom_small">
+    <lightning-card title="Matching Books">
+        <c-book-search-result book-type-id={bookTypeId} search-type={searchTypeValue}></c-book-search-result>
+    </lightning-card>
+</div>
+</template>
