@@ -4,8 +4,10 @@ import { NavigationMixin } from 'lightning/navigation';
 import { LightningElement,track ,wire} from 'lwc';
 
 
+
 export default class BookSearchFormTest extends NavigationMixin(LightningElement) {
     @track bookTypes;
+    @track bookId;
     @wire(getBookTypes)
     wiredBookType({data,error}){
         if(data){
@@ -20,6 +22,8 @@ export default class BookSearchFormTest extends NavigationMixin(LightningElement
             this.showToast('Error',error.body.message,'error');
         }
     }
+
+    
 
     handleBookTypeChange(event){
         const bookTypeId=event.detail.value;

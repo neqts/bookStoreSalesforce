@@ -1,0 +1,33 @@
+<template>
+    <template if:false={hasReviews}>
+        <p>No Reviews Posted For This Book</p>
+    </template>
+    <template if:true={hasReviews}>
+        <div style="height: 300px; overflow: overlay;"  >
+            <template for:each={bookExperiences} for:item="bookExp">
+                <div class="slds-feed" key={bookExp.Id}>
+                    <ul class="slds-feed__list " >
+                        <li class="slds-feed__item">
+                            <article class="slds-post total">
+                                <lightning-formatted-rich-text class="nick" value={bookExp.Nick__c}>
+                                </lightning-formatted-rich-text>
+                                <div class="title">
+                                    <!-- Displaying the title -->
+                                    <p class="slds-text-title_caps">{bookExp.Name}
+                                        
+                                    </p>
+                                    <p class="slds-text-body_small">
+                                        <!-- Displaying experince inside a formattedRichText -->
+                                        <lightning-formatted-rich-text value={bookExp.Description__c}>
+                                        </lightning-formatted-rich-text>
+                                       
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

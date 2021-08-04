@@ -1,0 +1,41 @@
+.label {
+    font-weight: bold;
+    display: block;
+  }
+  
+  .carproperty {
+    margin-bottom: 3px;
+  }
+  
+  .imageview {
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+    margin: 2px;   
+  }
+  
+  .book{
+
+    width:150px;
+    height:200px;
+
+}
+.main{
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+    font-family:monospace;
+}
+.container{
+    margin-bottom:10px;
+    margin-top:5px;
+    font-size: 13px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.buy{
+    margin-top:30px;
+}
+.details{
+    margin-right:35px;
+}

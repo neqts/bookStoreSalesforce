@@ -1,0 +1,21 @@
+<template>
+    <template if:true={bookFound}>
+        <lightning-card>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size='12'>
+            <lightning-tabset active-tab-value={selectedTabValue}>
+                <lightning-tab label="Book Details" value="bookdetailstab" onactive={tabChangeHanlder}>
+                        <c-book-detail book={book}></c-book-detail>
+                </lightning-tab>
+                <lightning-tab label="Add Book Review" value="addexperience" onactive={tabChangeHanlder}>
+                        <c-add-book-review book-id={bookId} onreviewadded={reviewAddedHandler}></c-add-book-review>
+                </lightning-tab>
+                <lightning-tab label="Reviews" value="viewexperience" onactive={tabChangeHanlder}>
+                    <c-book-reviews book-id={bookId}></c-book-reviews>
+                </lightning-tab>
+            </lightning-tabset>
+        </lightning-layout-item>
+    </lightning-layout>
+</lightning-card>
+</template>
+</template>

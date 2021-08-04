@@ -7,7 +7,6 @@ export default class BookSearchOne extends LightningElement {
   
     bookTypeSelectHandler(event){
         this.bookTypeId=event.detail;
-        console.log(this.bookTypeId);
     }
  
     handleSearch(event){

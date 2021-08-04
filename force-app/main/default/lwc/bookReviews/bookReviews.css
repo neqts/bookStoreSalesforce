@@ -1,0 +1,15 @@
+.nick{
+    letter-spacing:2px;
+    text-transform: uppercase;
+    color:grey;
+}
+.title{
+margin-top:5px;
+margin-bottom:5px;
+font-family:monospace;
+}
+.total{
+    background:rgb(221 219 218 / 36%);
+    margin-left: 15px;
+    margin-right: 15px;
+}

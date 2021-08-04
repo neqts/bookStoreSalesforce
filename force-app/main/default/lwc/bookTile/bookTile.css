@@ -1,0 +1,24 @@
+.title{
+    padding: 8px;
+    background-color: #FFFFFF;
+    border-radius: 0.25rem;
+}
+a{
+    color:inherit;
+}
+img.book{
+    max-width: initial;
+    pointer-events: none;
+    padding:0px;
+    
+}
+.title{
+    font-weight:bold;
+    text-transform:uppercase
+}
+.selected{
+    border-width: 3px;
+    border-color: #ffa500;
+    border-style: solid;
+    padding:15px;
+  }

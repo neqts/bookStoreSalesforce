@@ -1,0 +1,26 @@
+.title{
+    margin: 0 0 30px;
+    line-height: 50px;
+    font-family: "roboto_condensedlight";
+    font-size: 3em;
+    font-weight: normal;
+    color: #e92e75;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.date{
+    letter-spacing: 2px;
+    font-size:10px;
+    margin-left: 10px;
+    color:grey;
+
+}
+.main{
+    background:rgb(211, 211, 211);
+}
+.cont{
+    margin-bottom:30px;
+}
+.content{
+    margin-bottom: 20px;
+}

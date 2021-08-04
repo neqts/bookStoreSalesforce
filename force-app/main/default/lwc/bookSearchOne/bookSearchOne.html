@@ -1,8 +1,13 @@
 <template>
     <div class="slds-m-bottom_small">
-    <lightning-card title="Search Your Book" >     
-     <c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test>
-     <c-search-book onsearchtypedbook={handleSearch}></c-search-book>
+    <lightning-card title="Search Your Book" >  
+        <lightning-layout class="">
+            <div class="container slds-p-horizontal_xx-large">
+            <lightning-layout-item><c-search-book onsearchtypedbook={handleSearch} class="container"></c-search-book></lightning-layout-item>
+            <lightning-layout-item><c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test></lightning-layout-item>
+        </div>
+        </lightning-layout>   
+
           
     </lightning-card>
 </div>

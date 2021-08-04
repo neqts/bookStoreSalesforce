@@ -2,12 +2,8 @@
     <lightning-layout multiple-rows horizontal-align="center">
         <template if:true={booksFound}>
         <template for:each={books} for:item="book">
-            <lightning-layout-item key={book.Id} padding="around-small" size="12" small-device-size="6" large-device-size="6">
-                <ul><li>{book.Name}</li>
-                    <li>{book.Author__c}</li>
-                    <li>{book.Description__c}</li>
-                    <li>{book.Type__c}</li>
-                    <li>  <img src={book.PhotoURL__c} style="max-width: 300px;max-height:300px;"></li></ul>
+            <lightning-layout-item key={book.Id} padding="around-small" size="12"  large-device-size="3" medium-device-size="4" small-device-size="6" >
+                <c-book-tile book={book} onbookselect={bookSelectHandler} book-selected-id={selectedBookId}></c-book-tile>
 
             </lightning-layout-item>
             
