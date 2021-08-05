@@ -11,16 +11,26 @@
 .date{
     letter-spacing: 2px;
     font-size:10px;
-    margin-left: 10px;
     color:grey;
+    display:flex;
 
 }
 .main{
     background:rgb(211, 211, 211);
 }
 .cont{
-    margin-bottom:30px;
+    padding:30px;
+    margin-bottom: 20px;
 }
 .content{
     margin-bottom: 20px;
+}
+.text{
+    font-family: monospace;
+}
+.test{
+    margin-top:20px;
+    padding-top:20px;
+    color:rgb(19, 19, 19);
+    
 }

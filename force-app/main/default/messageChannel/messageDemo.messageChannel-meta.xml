@@ -6,4 +6,7 @@
     <lightningMessageFields>
         <fieldName>bookId</fieldName>
     </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>status</fieldName>
+    </lightningMessageFields>
 </LightningMessageChannel>

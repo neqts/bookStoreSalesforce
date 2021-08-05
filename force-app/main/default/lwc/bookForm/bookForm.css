@@ -1,0 +1,12 @@
+.flex{
+    display:flex;
+    justify-content: center;
+}
+.main{
+    margin:30px;
+    
+}
+.test{
+    margin:20px;
+    padding:20px;
+}
