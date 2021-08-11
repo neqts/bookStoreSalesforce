@@ -9,4 +9,10 @@
     <lightningMessageFields>
         <fieldName>status</fieldName>
     </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>blogId</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>cartId</fieldName>
+    </lightningMessageFields>
 </LightningMessageChannel>

@@ -1,35 +1,15 @@
 <template>
-    <lightning-card>
+    
+    <lightning-card onclick={handleShowDetails}>
     <lightning-layout multiple-rows>
-        <lightning-layout-item size="12" padding="around-small">
+        <lightning-layout-item size="12" padding="around-small" >
                 <template for:each={main} for:item="post" class="main">
-                    
-                    <p key={post.Id} class="cont">
-                        <lightning-formatted-text class="title slds-m-bottom_small" value={post.Title__c}>
-                            
-                        </lightning-formatted-text><br>
-                        
-                        <span class="date slds-text-body_small content slds-m-bottom_small">
-                            
-                        <lightning-formatted-date-time value={post.CreatedDate}></lightning-formatted-date-time>  
-                        
-                    </span>
-                    
-
-                        <lightning-formatted-rich-text  value={post.Content__c} class="test slds-text-color_weak">
-                        </lightning-formatted-rich-text>
-                        <lightning-layout>
-                            <lightning-layout-item>
-                                
-                            </lightning-layout-item>
-                        </lightning-layout>
-                        
-                    </p>
-                    
+                        <c-blog-main key={post.Id} post-details={post}></c-blog-main>
                     </template>
                 </lightning-layout-item>
                 </lightning-layout>
       
         
             </lightning-card>
+       
 </template>

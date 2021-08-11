@@ -1,7 +1,7 @@
-import { LightningElement,wire,track } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import { registerListener } from 'c/pubsub';
-import { unregisterAllListeners } from 'c/pubsub';
+import { MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
+import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import { CurrentPageReference } from 'lightning/navigation';
 
 
@@ -14,7 +14,7 @@ import BOOK_TYPE from '@salesforce/schema/Books__c.Type__c'
 import BOOK_QUANTITY from '@salesforce/schema/Books__c.Quantity__c'
 import BOOK_IMG from '@salesforce/schema/Books__c.PhotoURL__c'
 
-const fields=[
+const fields = [
     BOOK_ID,
     BOOK_NAME,
     BOOK_AUTHOR,
@@ -30,40 +30,48 @@ const fields=[
 export default class BookDetails extends LightningElement {
     @track bookId;
     @track selectedTabValue;
+    subscription
 
 
     @wire(CurrentPageReference) pageRef;
+    @wire(MessageContext)
+    msg
 
-    @wire(getRecord,{ recordId : '$bookId',fields})
+
+    @wire(getRecord, { recordId: '$bookId', fields })
     book;
 
-    connectedCallback(){
-        registerListener('bookselect',this.callBackMethod,this)
-       
-    }
-    callBackMethod(payload){
-        this.bookId=payload;
-    }
+    connectedCallback() {
+        this.subscription = subscribe(this.msg, messageChannel, (msg) => this.callBackMethod(msg))
 
-    disconnectedCallback(){
-        unregisterAllListeners(this);
     }
 
 
-    tabChangeHanlder(event){
+
+
+
+    callBackMethod(payload) {
+        this.bookId = payload.bookId;
+
+    }
+
+
+
+
+    tabChangeHanlder(event) {
         this.selectedTabValue = event.target.value;
     }
-    reviewAddedHandler(){
+    reviewAddedHandler() {
         const bookReviewComponent = this.template.querySelector('c-book-reviews');
-        if(bookReviewComponent){
+        if (bookReviewComponent) {
             bookReviewComponent.getBookReviews();
         }
 
         this.selectedTabValue = 'viewexperience';
     }
 
-    get bookFound(){
-        if(this.book.data){
+    get bookFound() {
+        if (this.book.data) {
             return true
         }
         return false

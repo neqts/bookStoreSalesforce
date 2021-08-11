@@ -1,24 +1,21 @@
 <template>
     <lightning-card >
         <div class="test">
-        <lightning-record-form  fields={fields} mode="view" density="compact" object-api-name={objectField} 
-        record-id={bookId}></lightning-record-form>
-        <lightning-layout class="flex">
-            
+            <lightning-record-form fields={fields} mode="view" density="compact" object-api-name={objectField} 
+            record-id={blogId}></lightning-record-form>
+            <lightning-layout class="flex">
             <lightning-layout-item>  <lightning-button 
                 variant="success"  
                 label="Create"   
                 icon-name="utility:record_create" 
-                onclick={createNewBookType}></lightning-button></lightning-layout-item>
+                onclick={createNewBlogPost}></lightning-button></lightning-layout-item>
             <lightning-layout-item class="slds-m-left_large"> <lightning-button variant="destructive" 
                 label="Delete"
                 icon-name="utility:delete"
-                onclick={deleteBook}>
+                onclick={deleteBlogPost}>
             </lightning-button></lightning-layout-item>
-
         </lightning-layout>
-    </div>
-    </lightning-card>
-       
-   
+        
+   </div>
+</lightning-card>
 </template>

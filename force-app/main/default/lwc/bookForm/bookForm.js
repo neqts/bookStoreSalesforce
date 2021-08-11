@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import NAME_FIELD from '@salesforce/schema/Books__c.Name';
 import OBJECT_API_NAME from '@salesforce/schema/Books__c';
 import AUTHOR_FIELD from '@salesforce/schema/Books__c.Author__c'
@@ -22,7 +22,7 @@ export default class BookForm extends NavigationMixin(LightningElement) {
 
 
     @track lstOppotunities = []
-    @track bookId = '';
+    @api bookId = '';
     @track status;
     subscription = null;
     @wire(MessageContext)
@@ -82,6 +82,11 @@ export default class BookForm extends NavigationMixin(LightningElement) {
             attributes: {
                 objectApiName: "Books__c",
                 actionName: 'new'
+            },
+            state: {
+                nooverride: 1,
+                navigationLocation: 'RELATED_LIST',
+
             }
         }
 

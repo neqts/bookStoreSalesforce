@@ -1,0 +1,66 @@
+<template>
+    <div class="slds-box slds-theme--default">
+        <div class="slds-text-color_inverse slds-text-heading_large" style="padding:0.5rem;background:#16325c">        
+            
+Cart
+        </div>
+        <div class="slds-float_right">        
+           
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset">
+                            Book Name
+                        </a>
+                    </th>
+                   
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" >
+                            Price
+                        </a>
+                    </th>
+                   
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" >
+                            Type
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" >
+                            Amount
+                        </a>
+                    </th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={books} for:item="book">
+                    <tr class="slds-hint-parent" key={book.Id}>
+                        <td data-label="Book Name">
+                            <div class="slds-cell-wrap">{book.Name}</div>
+                        </td>
+                       
+                        <td data-label="Price">
+                            <div class="slds-cell-wrap">{book.Price__c}$</div>
+                        </td>
+                        <td data-label="Book Name">
+                            <div class="slds-cell-wrap">{book.Type__c}</div>
+                        </td>
+                       
+                        <td data-label="Amount">
+                            <lightning-input type="number" ></lightning-input>
+                        </td>
+                        
+                       
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <lightning-button variant="success" label="Cart Store" title="Successful action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+  
+       
+          
+    </div>
+</template>

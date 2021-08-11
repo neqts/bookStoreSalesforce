@@ -35,7 +35,6 @@ export default class BookSearchResult extends LightningElement {
 
     refresh(msg) {
         if (msg.status === 'refresh') {
-            console.log('mss');
             refreshApex(this.bookresponse);
         }
     }
