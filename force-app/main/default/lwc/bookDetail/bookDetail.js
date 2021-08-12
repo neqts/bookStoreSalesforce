@@ -1,8 +1,9 @@
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { MessageContext, publish } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
+import insertRecords from '@salesforce/apex/cartController.insertRecords';
 
 
 
@@ -15,6 +16,7 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
     @api book;
     selectedCartId
+    @track quantity = ''
 
     @wire(MessageContext)
     messageContext;
@@ -22,12 +24,28 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
 
     buy() {
-        const cartId = this.bookDi;
-        this.selectedCartId = cartId;
-        const payload = { cartId: cartId }
-        publish(this.messageContext, messageChannel, payload)
-        console.log(payload, this.selectedCartId);
+        insertRecords({ booksIds: this.bookDi, quantity: this.quantity, booksName: this.bookName, price: this.bookPrice }).then((data) => {
+            if (data) {
+                this.showToast('Success', 'Review Record Updated', 'success');
 
+            } else {
+                this.showToast('ERROR', error.body.message, 'error')
+
+            }
+            this.quantity = ''
+        });
+
+        const messagePayload = {
+            status: 'refresh'
+        }
+
+        publish(this.messageContext, messageChannel, messagePayload)
+
+
+    }
+
+    handleFieldChange(event) {
+        this.quantity = event.target.value
 
     }
 

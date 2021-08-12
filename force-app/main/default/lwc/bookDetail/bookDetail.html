@@ -32,6 +32,9 @@
                         <span class="label main">Book Price:</span>
                         <span class="container">{bookPrice}$</span>
                     </div>
+                    <div slot="actions" >
+                        <lightning-input label="Enter the quantity" onchange={handleFieldChange}></lightning-input>
+                    </div>
                     <div slot="actions" class="buy">
                         <lightning-button label="Add to cart" onclick={buy}></lightning-button>
                     </div>

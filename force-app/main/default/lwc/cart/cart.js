@@ -1,18 +1,21 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 import { MessageContext, subscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import getBookDetails from '@salesforce/apex/SelectBookById.getBookDetails';
-import insertRecords from '@salesforce/apex/cartController.insertRecords';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-
-
+import showCartItems from '@salesforce/apex/showCart.showCartItems';
+import { refreshApex } from '@salesforce/apex';
+import { deleteRecord } from 'lightning/uiRecordApi';
 
 
 export default class Cart extends LightningElement {
-    @track cartId = ''
     subscription = null;
-    @track books;
-    @track cartItems = [];
+    subscriptionRefresh = null
+    subscriptionRefreshDelete = null
+
+    @track Items
+    @track itemId = ''
+    @api tableLength
 
 
 
@@ -21,36 +24,61 @@ export default class Cart extends LightningElement {
 
 
 
-    bookresponse
-    @wire(getBookDetails, { cartIds: '$cartItems' })
-    wiredBooks(response) {
+
+
+    itemresponse
+    @wire(showCartItems)
+    wiredCartItems(response) {
         const { data, error } = response;
-        this.bookresponse = response
+        this.itemresponse = response
         if (data) {
-            this.books = data
+            this.Items = data
+            this.tableLength = data.length
+            console.log(data);
+
         } else if (error) {
+
+        }
+    }
+    disconnectedCallback() {
+        unsubscribe(this.subscriptionRefresh);
+
+    }
+
+    removeRecord(event) {
+        deleteRecord(event.target.dataset.id).then(() => {
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Record deleted successfully',
+                    variant: 'success'
+                })
+            )
+
+        })
+        this.subscriptionRefreshDelete = subscribe(this.messageContext, messageChannel, (msg) => this.refresh(msg))
+    }
+
+    refresh(msg) {
+        console.log(msg.status);
+        if (msg.status === 'refresh') {
+            refreshApex(this.itemresponse);
         }
     }
 
-
-
-
     connectedCallback() {
         this.subscription = subscribe(this.messageContext, messageChannel, (msg) => this.handleMessge(msg))
+        this.subscriptionRefresh = subscribe(this.messageContext, messageChannel, (msg) => this.refresh(msg))
+        this.subscriptionRefreshDelete
     }
 
     handleMessge(msg) {
         this.cartItems = [...this.cartItems, msg.cartId];
+
     }
-    handleClick() {
-        insertRecords({ booksIds: this.cartItems }).then((data) => {
-            if (data) {
-                this.showToast('Success', 'Review Record Updated', 'success');
-            } else if (error) {
-                his.showToast('Error', 'Error', 'error');
-            }
-        });
-    }
+
+
+
 
 
     showToast(title, message, variant) {

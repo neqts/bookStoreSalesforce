@@ -24,41 +24,55 @@ Cart
                    
                     <th class="" scope="col">
                         <a class="slds-th__action slds-text-link_reset" >
-                            Type
+                            Quantity
                         </a>
                     </th>
                     <th class="" scope="col">
                         <a class="slds-th__action slds-text-link_reset" >
-                            Amount
+                          DELETE
                         </a>
                     </th>
+                   
                   
                 </tr>
             </thead>
             <tbody>
-                <template for:each={books} for:item="book">
-                    <tr class="slds-hint-parent" key={book.Id}>
+                <template for:each={Items} for:item="item">
+                    <tr class="slds-hint-parent" key={item.Id} >
+                       
+                       
                         <td data-label="Book Name">
-                            <div class="slds-cell-wrap">{book.Name}</div>
+                            <div class="slds-cell-wrap">{item.BookName__c}</div>
                         </td>
                        
-                        <td data-label="Price">
-                            <div class="slds-cell-wrap">{book.Price__c}$</div>
+                        <td data-label="Quantity">
+                            <div class="slds-cell-wrap">{item.PriceBooks__c}$</div>
                         </td>
-                        <td data-label="Book Name">
-                            <div class="slds-cell-wrap">{book.Type__c}</div>
+                      
+                        <td data-label="Quantity">
+                            <div class="slds-cell-wrap">{item.Quantity__c}</div>
                         </td>
+                      
+                        <td data-label="Quantity">
+                            <lightning-button variant="destructive" 
+                            label="Delete"
+                            icon-name="utility:delete"
+                            icon-position="right"
+                            onclick={removeRecord}
+                            data-id={item.Id}>
+                        </lightning-button>
+                        </td>
+                      
                        
-                        <td data-label="Amount">
-                            <lightning-input type="number" ></lightning-input>
-                        </td>
                         
                        
                     </tr>
                 </template>
+             
             </tbody>
         </table>
-        <lightning-button variant="success" label="Cart Store" title="Successful action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+        {tableLength}
+        <lightning-button variant="success" label="Order" title="Successful action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
   
        
           

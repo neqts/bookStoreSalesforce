@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
@@ -31,7 +31,7 @@ export default class BookDetails extends LightningElement {
     @track bookId;
     @track selectedTabValue;
     subscription
-
+    @api tableLength;
 
     @wire(CurrentPageReference) pageRef;
     @wire(MessageContext)
