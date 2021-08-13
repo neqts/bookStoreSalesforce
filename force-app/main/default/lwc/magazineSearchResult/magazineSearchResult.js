@@ -17,9 +17,6 @@ export default class MagazineSearchResult extends LightningElement {
     @track testId
 
 
-    connectedCallback() {
-        console.log(this.testId);
-    }
 
 
     @wire(magazineType, { bookTypeId: '$bookTypeId' })
@@ -37,7 +34,6 @@ export default class MagazineSearchResult extends LightningElement {
     wiredQuantity({ data, error }) {
         if (data) {
             this.magazineQuantity = data[0]
-            console.log(data[0]);
         } else if (error) {
             this.showToast('ERROR', error.body.message, 'error');
         }
@@ -56,10 +52,7 @@ export default class MagazineSearchResult extends LightningElement {
 
 
 
-
-
-    handleSave(evt) {
-        console.log(evt);
+    handleSave() {
         this.showToast('Success', 'Review Record Updated', 'success');
     }
 

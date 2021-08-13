@@ -1,0 +1,10 @@
+.main{
+    display:inline-block
+}
+.Orders{
+    width:100%;
+    background:orange;
+    padding:10px;
+    margin:10px;
+    font-family:monospace;
+}

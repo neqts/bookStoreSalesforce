@@ -1,5 +1,5 @@
 import { LightningElement, api, wire } from 'lwc';
-import { MessageContext, publish, subscribe } from 'lightning/messageService';
+import { MessageContext, publish } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 
 
@@ -15,7 +15,6 @@ export default class BlogMain extends LightningElement {
         event.preventDefault();
 
         const postId = this.postDetails.Id;
-        console.log(postId);
         const messagePayload = {
             postId: postId,
         }

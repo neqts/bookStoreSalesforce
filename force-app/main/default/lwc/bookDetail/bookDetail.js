@@ -1,14 +1,9 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { MessageContext, publish } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import insertRecords from '@salesforce/apex/cartController.insertRecords';
-
-
-
-
-
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
 export default class BookDetail extends NavigationMixin(LightningElement) {
@@ -24,30 +19,27 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
 
     buy() {
-        insertRecords({ booksIds: this.bookDi, quantity: this.quantity, booksName: this.bookName, price: this.bookPrice }).then((data) => {
-            if (data) {
-                this.showToast('Success', 'Review Record Updated', 'success');
-
-            } else {
-                this.showToast('ERROR', error.body.message, 'error')
-
+        insertRecords({ booksIds: this.bookDi, quantity: this.quantity, booksName: this.bookName, price: this.bookPrice }).then(() => {
+            const messagePayload = {
+                status: 'refresh'
             }
-            this.quantity = ''
-        });
+            publish(this.messageContext, messageChannel, messagePayload)
+            this.showToast('Success', 'Review Record Updated', 'success');
 
-        const messagePayload = {
-            status: 'refresh'
-        }
-
-        publish(this.messageContext, messageChannel, messagePayload)
-
-
+        }).catch((error) => {
+            this.showToast('Error', JSON.stringify(error), 'error');
+        })
     }
+
+
+
 
     handleFieldChange(event) {
         this.quantity = event.target.value
-
     }
+
+
+
 
     fullDetails() {
         this[NavigationMixin.Navigate]({
@@ -126,5 +118,13 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
         } catch (error) {
             return 'NA';
         }
+    }
+    showToast(title, message, variant) {
+        const evt = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant,
+        });
+        this.dispatchEvent(evt);
     }
 }

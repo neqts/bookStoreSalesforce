@@ -5,7 +5,7 @@ import BLOG_ID from '@salesforce/schema/Blog__c.Id'
 import BLOG_TITLE from '@salesforce/schema/Blog__c.Title__c'
 import BLOG_CONTENT from '@salesforce/schema/Blog__c.Content__c'
 import { getRecord } from 'lightning/uiRecordApi';
-import { MessageContext, publish, subscribe } from 'lightning/messageService';
+import { MessageContext, subscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import { refreshApex } from '@salesforce/apex';
 import { subscribe as subscribePE, unsubscribe as unsubscribePE, onError } from 'lightning/empApi';
@@ -32,7 +32,6 @@ export default class BlogPost extends LightningElement {
 
     refresh(msg) {
         if (msg.status === 'refresh') {
-            console.log('mss');
             refreshApex(this.bookresponse);
         }
     }

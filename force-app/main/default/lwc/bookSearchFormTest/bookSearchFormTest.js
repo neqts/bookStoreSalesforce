@@ -4,7 +4,6 @@ import { NavigationMixin } from 'lightning/navigation';
 import { LightningElement, track, wire } from 'lwc';
 
 
-
 export default class BookSearchFormTest extends NavigationMixin(LightningElement) {
     @track bookTypes;
     @track bookId;
@@ -29,7 +28,6 @@ export default class BookSearchFormTest extends NavigationMixin(LightningElement
         const bookTypeId = event.detail.value;
         const bookTypeSelectionChangeEvent = new CustomEvent('booktypeselect', { detail: bookTypeId });
         this.dispatchEvent(bookTypeSelectionChangeEvent)
-        console.log(event.detail.value)
 
     }
 

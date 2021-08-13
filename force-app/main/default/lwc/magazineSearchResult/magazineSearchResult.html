@@ -1,13 +1,31 @@
 <template>
-    <lightning-layout >
-      
+    <lightning-layout multiple-rows>
+        <div class='slds-p-vertical_medium '>
+      <lightning-layout-item  size="12"  >
+  
         <lightning-layout-item class="colorfull" >
-            <template if:true={bookFound}>
-                <template for:each={books} for:item="book">
+            <lightning-layout-item  class="slds-align_absolute-center " >
+                <template if:false={bookFound}>
+                    <div class="slds-align_absolute-center">
+                    No books found
+                    </div>
+                </template>
+                <template if:true={quantityFound}>
+                <h1 class={test}>Total:{magazineQuantity.quntity}</h1>
+                </template>
+                <template if:false={quantityFound}>
+                    No Type chosen
+                </template>
+            </lightning-layout-item>
+      
+        <br>
+        <br>
+            <template if:true={bookFound} class="nodawaj">
+                <template for:each={books} for:item="book" class="nodawaj">
                     
-                <lightning-layout-item key={book.Id} size="12"  large-device-size="12" medium-device-size="12" small-device-size="12" >
+                <lightning-layout-item key={book.Id}  class="nodawaj">
                     {book.Name}
-                    <lightning-record-edit-form onsuccess={handleSave} object-api-name={objectField} 
+                    <lightning-record-edit-form class='noodle' onsuccess={handleSave} object-api-name={objectField} 
                     record-id={book.Id} >
                     <lightning-input-field
             field-name={quantityField}>
@@ -18,24 +36,20 @@
     <div class='center'>
         <lightning-button type='submit' variant='success' label='Save'></lightning-button>
         <lightning-button type='reset' variant='destructive-text' label='Reset'></lightning-button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
                 </lightning-record-edit-form>
                     </lightning-layout-item>
                 </template>
             </template>
+          
         </lightning-layout-item>
-    <lightning-layout-item>
-    <template if:false={bookFound}>
-        <div class="slds-align_absolute-center">
-        No books found
-        </div>
-    </template>
-    <template if:true={quantityFound}>
-    <h1 class={test}>Total:{magazineQuantity.quntity}</h1>
-    </template>
-    <template if:false={quantityFound}>
-        No Type chosen
-    </template>
 </lightning-layout-item>
+</div>
 </lightning-layout>
 </template>

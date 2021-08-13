@@ -8,12 +8,12 @@ import { refreshApex } from '@salesforce/apex';
 
 
 
+
 export default class BookSearchResult extends LightningElement {
     @api bookTypeId;
     @track books;
     @api searchType;
     @track selectedBookId;
-
 
 
     @wire(MessageContext)
@@ -28,7 +28,7 @@ export default class BookSearchResult extends LightningElement {
         if (data) {
             this.books = data
         } else if (error) {
-            console.log(error);
+            this.showToast('ERROR', error.body.message, 'error')
         }
     }
 

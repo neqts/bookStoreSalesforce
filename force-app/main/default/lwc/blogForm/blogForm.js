@@ -1,4 +1,4 @@
-import { LightningElement, track, wire, api } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 import OBJECT_API_NAME from '@salesforce/schema/Blog__c';
 import TITLE_FIELD from '@salesforce/schema/Blog__c.Title__c';
 import CONTENT_FIELD from '@salesforce/schema/Blog__c.Content__c';
@@ -28,20 +28,17 @@ export default class BlogForm extends NavigationMixin(LightningElement) {
     handlePe() {
         subsribeEmp(CHANEL, -1, (msg) => this.handlePeMessage(msg)
         ).then(response => this.subscritpionPe = response)
-
-        onError((error) => console.log(error))
+        onError((error) => this.showToast('ERROR', error.body.message, 'error'))
     }
 
 
     handlePeMessage(msg) {
         this.blogId = msg.data.payload.blog__c;
-
     }
 
     connectedCallback() {
         if (!this.subscription) {
             this.subscription = subscribe(this.msgCtx, messageChannel, (msg) => this.handleMessge(msg))
-
         }
         this.handlePe()
     }
@@ -55,10 +52,8 @@ export default class BlogForm extends NavigationMixin(LightningElement) {
             state: {
                 nooverride: 1,
                 navigationLocation: 'RELATED_LIST',
-
             }
         }
-
         )
         const messagePayload = {
             status: 'refresh'
@@ -70,9 +65,7 @@ export default class BlogForm extends NavigationMixin(LightningElement) {
 
 
     deleteBlogPost() {
-
         deleteRecord(this.blogId).then(() => {
-
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
@@ -121,10 +114,6 @@ export default class BlogForm extends NavigationMixin(LightningElement) {
             return 'NA';
         }
     }
-
-
-
-
 
 
     showToast(title, message, variant) {

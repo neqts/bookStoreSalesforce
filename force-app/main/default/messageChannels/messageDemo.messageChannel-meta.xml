@@ -15,4 +15,5 @@
     <lightningMessageFields>
         <fieldName>cartId</fieldName>
     </lightningMessageFields>
+
 </LightningMessageChannel>

@@ -4,8 +4,6 @@ import OBJECT_API_NAME from '@salesforce/schema/Books__c';
 import AUTHOR_FIELD from '@salesforce/schema/Books__c.Author__c'
 import PHOTO_FIELD from '@salesforce/schema/Books__c.Picture__c'
 import DESCRIPTION_FIELD from '@salesforce/schema/Books__c.Description__c';
-import QUANTITY_FIELD from '@salesforce/schema/Books__c.Quantity__c';
-import PRICE_FIELD from '@salesforce/schema/Books__c.Price__c';
 import PICTURE_URL_FIELD from '@salesforce/schema/Books__c.PhotoURL__c'
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -33,8 +31,6 @@ export default class BookForm extends NavigationMixin(LightningElement) {
 
     }
 
-
-
     constructor() {
         super();
         getDetails({}).then(response => {
@@ -43,6 +39,8 @@ export default class BookForm extends NavigationMixin(LightningElement) {
             this.showToast('ERROR', error.body.message, 'error')
         })
     }
+
+
 
     deleteBook() {
         deleteRecord(this.bookId).then(() => {
@@ -58,8 +56,9 @@ export default class BookForm extends NavigationMixin(LightningElement) {
             }
             publish(this.msgCtx, messageChannel, messagePayload)
         })
-
     }
+
+
 
     connectedCallback() {
         if (!this.subscription) {
@@ -70,8 +69,6 @@ export default class BookForm extends NavigationMixin(LightningElement) {
     disconnectedCallback() {
         unsubscribe(this.subscription);
     }
-
-
 
 
 
@@ -89,27 +86,13 @@ export default class BookForm extends NavigationMixin(LightningElement) {
 
             }
         }
-
         )
-        const messagePayload = {
-            status: 'refresh'
-        }
-        function abla() {
-            console.log('XYZ');
-            publish(this.msgCtx, messageChannel, messagePayload)
-        }
-
-        setTimeout(function () {
-            abla()
-        }, 2000);
-
-
     }
 
 
 
 
-    get fields() { return [this.bookName, this.authorName, this.descriptionField, this.pictureUrl, this.quantityField, this.priceField, this.photoImg] }
+    get fields() { return [this.bookName, this.authorName, this.descriptionField, this.pictureUrl, this.photoImg] }
 
 
 

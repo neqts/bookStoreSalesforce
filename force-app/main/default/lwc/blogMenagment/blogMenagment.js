@@ -1,6 +1,6 @@
 import { getRecord } from 'lightning/uiRecordApi';
 import { LightningElement, wire, track } from 'lwc';
-import { MessageContext, publish, subscribe } from 'lightning/messageService';
+import { MessageContext, subscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import BLOG_ID from '@salesforce/schema/Blog__c.Id'
 import BLOG_CONTENT from '@salesforce/schema/Blog__c.Content__c'
@@ -19,12 +19,12 @@ export default class BlogMenagment extends LightningElement {
 
     @track blogId = '';
     @track selectTabValue
-
     @wire(MessageContext)
     msgCntx
+
+
     handleMessge(msg) {
         this.blogId = msg.postId
-        console.log(this.blogId);
     }
 
     @wire(getRecord, { blogId: '$blogId', fields })
@@ -32,8 +32,6 @@ export default class BlogMenagment extends LightningElement {
 
     connectedCallback() {
         subscribe(this.msgCntx, messageChannel, (msg) => this.handleMessge(msg))
-        console.log(this.blog.data)
-
     }
 
     callBackMethod(payload) {

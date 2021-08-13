@@ -1,11 +1,13 @@
 <template>
-    <div class="slds-m-bottom_small">
-        <lightning-card title="Search Your Book" >
-            <lightning-layout class="">
-                <div class="container slds-p-horizontal_xx-large">
-
-                <lightning-layout-item> <c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test></lightning-layout-item>
-
+    <div >
+        <lightning-card  >
+            <lightning-layout horizontal-align="center"  >
+                <div class="slds-p-vertical_medium">
+               
+                <lightning-layout-item class="space"><h1 class="header">Search by type</h1> <c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test></lightning-layout-item>
+              
+                
+              
                    <c-magazine-search-result book-type-id={bookTypeId} ></c-magazine-search-result>
             </div>
             </lightning-layout>
