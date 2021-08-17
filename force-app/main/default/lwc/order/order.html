@@ -1,0 +1,59 @@
+<template>
+    <form onsubmit={handleSubmit}>
+        <lightning-input label='Name: ' variant='label-inline' value={name} type='text' required onchange={handleNameChange}></lightning-input>
+        <lightning-input label="Email: " variant='label-inline' type='email' required onchange={handleEmailChange}></lightning-input>
+        <lightning-input label='Phone: ' variant='label-inline' type='phone' onchange={handlePhoneChange}></lightning-input>
+        <lightning-input type='text' variant='label-inline' value={street} label='Street: ' required
+        onchange={handleStreetChange}></lightning-input>
+    <lightning-input type='text' variant='label-inline' value={streetNumber} label='Street number: ' required
+        onchange={handleStreetNumberChange}>
+    </lightning-input>
+    <lightning-input type='text' variant='label-inline' value={flatNumber} label='Flat number: '
+        onchange={handleFlatNumberChange}></lightning-input>
+    <lightning-input type='text' variant='label-inline' value={postalCode} label='Postal code: ' required
+        onchange={handlePostalCodeChange}>
+    </lightning-input>
+    <lightning-input type='text' variant='label-inline' value={city} label='City: ' required
+        onchange={handleCityChange}></lightning-input>
+    <lightning-input type='text' variant='label-inline' value={country} label='Country: ' required
+        onchange={handleCountryChange}></lightning-input>
+        <h1>Your order:</h1>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                   
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Name">Book Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="First Name">Price</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Last Name">Quantity</div>
+                    </th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={Items} for:item="item">
+                    <tr class="slds-hint-parent" key={item.Id} >
+                       
+                        <th scope="col">
+                            <div>{item.BookName__c}</div>
+                        </th>
+                        <th scope="col">
+                            <div>{item.PriceBooks__c}</div>
+                        </th>
+                        <th scope="col">
+                            <div>{item.Quantity__c}</div>
+                        </th>
+                     
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        Total:{total} <br>
+
+        <lightning-button label='Get order' type='submit'></lightning-button>
+    </form>
+</template>
