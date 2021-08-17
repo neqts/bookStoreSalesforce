@@ -6,6 +6,7 @@ import OBJECT_API_NAME from '@salesforce/schema/Books__c';
 import PRICE_FIELD from '@salesforce/schema/Books__c.Price__c';
 import NAME_FIELD from '@salesforce/schema/Books__c.Name';
 import magazineQunatityType from '@salesforce/apex/magazineSearchResult.magazineQunatityType';
+import { refreshApex } from '@salesforce/apex';
 
 
 export default class MagazineSearchResult extends LightningElement {
@@ -30,8 +31,12 @@ export default class MagazineSearchResult extends LightningElement {
         }
     }
 
+
+    magazineresponse
     @wire(magazineQunatityType, { bookTypeId: '$bookTypeId' })
-    wiredQuantity({ data, error }) {
+    wiredQuantity(response) {
+        const { data, error } = response;
+        this.magazineresponse = response
         if (data) {
             this.magazineQuantity = data[0]
         } else if (error) {
@@ -39,6 +44,18 @@ export default class MagazineSearchResult extends LightningElement {
         }
     }
 
+
+    // bookresponse
+    // @wire(getBooks, { bookTypeId: '$bookTypeId', search: '$searchType' })
+    // wiredBooks(response) {
+    //     const { data, error } = response;
+    //     this.bookresponse = response
+    //     if (data) {
+    //         this.books = data
+    //     } else if (error) {
+    //         this.showToast('ERROR', error.body.message, 'error')
+    //     }
+    // }
 
 
     showToast(title, message, variant) {
@@ -54,6 +71,7 @@ export default class MagazineSearchResult extends LightningElement {
 
     handleSave() {
         this.showToast('Success', 'Review Record Updated', 'success');
+        refreshApex(this.magazineresponse);
     }
 
 

@@ -6,21 +6,41 @@
         <div style="height: 300px; overflow: overlay;"  >
             <template for:each={bookExperiences} for:item="bookExp">
                 <div class="slds-feed" key={bookExp.Id}>
-                    <ul class="slds-feed__list " >
+                    <ul class="slds-feed__list">
                         <li class="slds-feed__item">
-                            <article class="slds-post total">
-                                <lightning-formatted-rich-text class="nick" value={bookExp.Nick__c}>
-                                </lightning-formatted-rich-text>
-                                <div class="title">
+                            <article class="slds-post">
+                                <header class="slds-post__header slds-media">
+                                    <div class="slds-media__figure">
+                                        <a href="javascript:void(0);"
+                                            class="slds-avatar slds-avatar_circle slds-avatar_large">
+
+                                            <!-- Displaying user photo -->
+                                            <img alt={bookExp.CreatedBy.Name} src={bookExp.CreatedBy.SmallPhotoUrl}
+                                                title={bookExp.CreatedBy.Name} />
+
+                                        </a>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+                                            <p>
+                                                <!-- Displaying user name and company name -->
+                                                <a href="javascript:void(0);" data-userid={bookExp.CreatedBy.Id}
+                                                    onclick={userClickHandler}>{bookExp.CreatedBy.Name}</a> —
+                                                {bookExp.CreatedBy.CompanyName}</p>
+                                        </div>
+                                        <p class="slds-text-body_small">
+                                            <lightning-formatted-date-time value={bookExp.CreatedDate}>
+                                            </lightning-formatted-date-time>
+                                        </p>
+                                    </div>
+                                </header>
+                                <div class="slds-post__content slds-text-longform">
                                     <!-- Displaying the title -->
-                                    <p class="slds-text-title_caps">{bookExp.Name}
-                                        
-                                    </p>
+                                    <p class="slds-text-title_caps">{bookExp.Name}</p>
                                     <p class="slds-text-body_small">
                                         <!-- Displaying experince inside a formattedRichText -->
                                         <lightning-formatted-rich-text value={bookExp.Description__c}>
                                         </lightning-formatted-rich-text>
-                                       
                                     </p>
                                 </div>
                             </article>

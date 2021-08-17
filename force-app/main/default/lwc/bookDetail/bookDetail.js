@@ -1,6 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import { MessageContext, publish } from 'lightning/messageService';
+import { MessageContext, subscribe, unsubscribe, publish } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import insertRecords from '@salesforce/apex/cartController.insertRecords';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -25,11 +25,12 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
             }
             publish(this.messageContext, messageChannel, messagePayload)
             this.showToast('Success', 'Review Record Updated', 'success');
-            console.log('uabsd')
 
         }).catch((error) => {
             this.showToast('Error', JSON.stringify(error), 'error');
         })
+
+
     }
 
 
@@ -37,7 +38,7 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
     handleFieldChange(event) {
         this.quantity = event.target.value
-        console.log('hello')
+
     }
 
 
@@ -95,7 +96,6 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
         } catch (error) {
             return 'NA';
         }
-
     }
     get bookPrice() {
         try {
