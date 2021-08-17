@@ -36,6 +36,7 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
     handleFieldChange(event) {
         this.quantity = event.target.value
+        console.log('hello')
     }
 
 
@@ -93,6 +94,7 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
         } catch (error) {
             return 'NA';
         }
+
     }
     get bookPrice() {
         try {
