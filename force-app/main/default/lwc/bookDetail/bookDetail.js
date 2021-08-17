@@ -25,6 +25,7 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
             }
             publish(this.messageContext, messageChannel, messagePayload)
             this.showToast('Success', 'Review Record Updated', 'success');
+            console.log('uabsd')
 
         }).catch((error) => {
             this.showToast('Error', JSON.stringify(error), 'error');
