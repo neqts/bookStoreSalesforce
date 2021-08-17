@@ -1,0 +1,73 @@
+<template>
+   
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+        <thead>
+        <tr class="slds-line-height_reset">
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset">
+                    Book Name
+                </a>
+            </th>
+           
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Price
+                </a>
+            </th>
+           
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Quantity
+                </a>
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <template for:each={Items} for:item="item">
+            <tr class="slds-hint-parent" key={item.Id} >
+               
+               
+                <td data-label="Book Name">
+                    <div class="slds-cell-wrap">{item.BookName__c}</div>
+                </td>
+               
+                <td data-label="Quantity">
+                    <div class="slds-cell-wrap">{item.PriceBooks__c}$</div>
+                </td>
+              
+                <td data-label="Quantity">
+                    <div class="slds-cell-wrap">{item.Quantity__c}</div>
+                </td>
+              
+             
+              
+               
+                
+               
+            </tr>
+        </template>
+     
+    </tbody>
+</table>
+ <br>
+
+ <div class="border">
+    <template for:each={orderedItems} for:item="order">
+        <ul key={order.Id} >
+            <li>DELIVERY ADDRES(MY ADDRESS)  </li>
+            <li>{order.Name__c}  </li>
+            <li>{order.Country__c} </li>
+            <li>{order.City__c}</li>
+            <li>{order.Postal_Code__c}</li>
+            <li>{order.street__c}</li>
+            <li>{order.Street_Number__c}</li>
+            <li>{order.Email__c}</li>
+            <li>{order.phone__c}</li>
+        </ul>
+    </template>
+ </div>
+
+Total: {total}
+   
+</template>

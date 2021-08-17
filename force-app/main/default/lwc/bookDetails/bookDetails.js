@@ -1,6 +1,6 @@
 import { LightningElement, wire, track, api } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
-import { MessageContext, subscribe } from 'lightning/messageService';
+import { MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
 import { CurrentPageReference } from 'lightning/navigation';
 
@@ -32,6 +32,7 @@ export default class BookDetails extends LightningElement {
     @track selectedTabValue;
     subscription
     @api tableLength;
+    activeTab = '1';
 
     @wire(CurrentPageReference) pageRef;
     @wire(MessageContext)
@@ -43,11 +44,19 @@ export default class BookDetails extends LightningElement {
 
     connectedCallback() {
         this.subscription = subscribe(this.msg, messageChannel, (msg) => this.callBackMethod(msg))
+
     }
+
+
 
     callBackMethod(payload) {
         this.bookId = payload.bookId;
+
     }
+    handleActive(evt) {
+        this.activeTab = evt.target.value;
+    }
+
 
 
     tabChangeHanlder(event) {

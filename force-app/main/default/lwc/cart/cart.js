@@ -46,8 +46,11 @@ export default class Cart extends LightningElement {
         })
     }
 
+
+
+
+
     refresh(msg) {
-        console.log(msg);
         if (msg.status === 'refresh') {
             refreshApex(this.itemresponse);
         }
