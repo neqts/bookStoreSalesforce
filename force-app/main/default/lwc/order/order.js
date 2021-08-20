@@ -8,14 +8,17 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 import { MessageContext, subscribe, publish } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
-
+import assignCartItemsToOrder from '@salesforce/apex/showOrder.assignCartItemsToOrder';
+import allOrders from '@salesforce/apex/showOrder.allOrders';
+import sendEmailToController from '@salesforce/apex/ControllerLwcExample.sendEmailToController';
+import uId from '@salesforce/user/Id';
 
 
 
 export default class userDetails extends LightningElement {
     subscription = null;
     @track error;
-    @track Items = []
+    @track Items = [];
 
     @track name = '';
     @track email = '';
@@ -28,6 +31,12 @@ export default class userDetails extends LightningElement {
     @track country = ''
 
 
+    userId = uId;
+
+
+    @track subject = 'Test Email'
+    @track body = 'Hello'
+    @track toSend = 'ttopor12@gmail.com'
 
     @wire(MessageContext)
     messageContext;
@@ -88,13 +97,28 @@ export default class userDetails extends LightningElement {
 
 
     itemresponse
-    @wire(showCartItems)
+    @wire(showCartItems, { userId: '$userId' })
     wiredCartItems(response) {
         const { data, error } = response;
         this.itemresponse = response
         if (data) {
             this.Items = data
             this.tableLength = data.length
+
+        } else if (error) {
+            this.showToast('ERROR', error.body.message, 'error')
+        }
+    }
+
+    orders = []
+
+    orderresponse
+    @wire(allOrders)
+    wiredOrderItems(response) {
+        const { data, error } = response;
+        this.orderresponse = response
+        if (data) {
+            this.orders = data
 
         } else if (error) {
             this.showToast('ERROR', error.body.message, 'error')
@@ -110,26 +134,38 @@ export default class userDetails extends LightningElement {
 
     connectedCallback() {
         this.subscription = subscribe(this.messageContext, messageChannel, (msg) => this.refresh(msg))
-
-
     }
 
 
-
-    handleSubmit(evt) {
+    handleAprove(evt) {
         evt.preventDefault();
         createOrder({
             email: this.email, price: this.total, phone: this.phone, street: this.street, streetNumber: this.streetNum,
             flatNum: this.flatNum, city: this.city, country: this.country, postalCode: this.postalCode, name: this.name
-        }).then(() => {
+        }).then((newOrderId) => {
+            const orderModify = this.Items.map((item) => item.Id)
+            assignCartItemsToOrder({ cartItemsIds: orderModify, orderId: newOrderId });
+            this.showToast('Success', 'Review Record Updated', 'success');
+
             const messagePayload = {
                 status: 'refresh'
             }
+
             publish(this.messageContext, messageChannel, messagePayload)
 
-            this.showToast('Success', 'Review Record Updated', 'success');
+            const recordInput = { body: this.body, toSend: this.email, subject: this.subject }  //You can send parameters
+            sendEmailToController(recordInput)
+                .then(() => {
+                    //If response is ok
+                }).catch(error => {
+                    //If there is an error on response
+                })
+
+
+
         }).catch((error) => {
             this.showToast('Error', JSON.stringify(error), 'error');
+            console.log(error);
         })
 
 

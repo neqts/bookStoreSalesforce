@@ -1,5 +1,5 @@
 <template>
-    <form onsubmit={handleSubmit}>
+    <form >
         <lightning-input label='Name: ' variant='label-inline' value={name} type='text' required onchange={handleNameChange}></lightning-input>
         <lightning-input label="Email: " variant='label-inline' type='email' required onchange={handleEmailChange}></lightning-input>
         <lightning-input label='Phone: ' variant='label-inline' type='phone' onchange={handlePhoneChange}></lightning-input>
@@ -54,6 +54,6 @@
         </table>
         Total:{total} <br>
 
-        <lightning-button label='Get order' type='submit'></lightning-button>
+        <lightning-button label='Get order' onclick={handleAprove} type='submit'></lightning-button>
     </form>
 </template>

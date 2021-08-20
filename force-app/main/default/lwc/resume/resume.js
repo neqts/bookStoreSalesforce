@@ -5,9 +5,11 @@ import showCartItems from '@salesforce/apex/showCart.showCartItems';
 import { refreshApex } from '@salesforce/apex';
 import { MessageContext, subscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
-
+import uId from '@salesforce/user/Id';
 export default class Resume extends LightningElement {
 
+
+    userId = uId;
     orderedItems
     Items = []
     orderresponse
@@ -28,7 +30,7 @@ export default class Resume extends LightningElement {
 
 
     itemresponse
-    @wire(showCartItems)
+    @wire(showCartItems, { userId: '$userId' })
     wiredCartItems(response) {
         const { data, error } = response;
         this.itemresponse = response

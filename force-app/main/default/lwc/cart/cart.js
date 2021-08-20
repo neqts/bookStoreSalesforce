@@ -5,10 +5,14 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import showCartItems from '@salesforce/apex/showCart.showCartItems';
 import { refreshApex } from '@salesforce/apex';
 import { deleteRecord } from 'lightning/uiRecordApi';
+import uId from '@salesforce/user/Id';
+
 
 
 export default class Cart extends LightningElement {
     subscription = null;
+    userId = uId;
+
 
     @track text = 'Your items in cart:'
     @track Items
@@ -20,7 +24,7 @@ export default class Cart extends LightningElement {
 
 
     itemresponse
-    @wire(showCartItems)
+    @wire(showCartItems, { userId: '$userId' })
     wiredCartItems(response) {
         const { data, error } = response;
         this.itemresponse = response
@@ -31,6 +35,8 @@ export default class Cart extends LightningElement {
         } else if (error) {
         }
     }
+
+
 
 
     removeRecord(event) {
@@ -48,18 +54,16 @@ export default class Cart extends LightningElement {
 
 
 
-
-
     refresh(msg) {
         if (msg.status === 'refresh') {
             refreshApex(this.itemresponse);
         }
     }
 
+
+
     connectedCallback() {
         this.subscription = subscribe(this.messageContext, messageChannel, (msg) => this.refresh(msg))
-
-
     }
 
 

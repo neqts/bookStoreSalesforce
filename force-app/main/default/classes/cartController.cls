@@ -8,13 +8,11 @@ public with sharing class cartController {
      item.Quantity__c=quantity;
      item.BookName__c=booksName;
      item.PriceBooks__c=price;
+     
      insert item;
    }
-@AuraEnabled
-   public static void insertRecords(Id[] booksIds,Integer quantity,String booksName,Integer price){
-       for(Id bookId:booksIds){
-           cartController.insertRecord(bookId,quantity,booksName,price);
-       }
 
-   }
+
+
+   
 }

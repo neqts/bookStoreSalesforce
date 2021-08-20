@@ -2,7 +2,7 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { MessageContext, subscribe, unsubscribe, publish } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
-import insertRecords from '@salesforce/apex/cartController.insertRecords';
+import insertRecord from '@salesforce/apex/cartController.insertRecord';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
@@ -19,7 +19,12 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
 
     buy() {
-        insertRecords({ booksIds: this.bookDi, quantity: this.quantity, booksName: this.bookName, price: this.bookPrice }).then(() => {
+        insertRecord({
+            bookId: this.bookDi,
+            quantity: this.quantity,
+            booksName: this.bookName,
+            price: this.bookPrice
+        }).then(() => {
             const messagePayload = {
                 status: 'refresh'
             }
@@ -29,8 +34,6 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
         }).catch((error) => {
             this.showToast('Error', JSON.stringify(error), 'error');
         })
-
-
     }
 
 
@@ -38,7 +41,6 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
 
     handleFieldChange(event) {
         this.quantity = event.target.value
-
     }
 
 

@@ -1,0 +1,158 @@
+<template>
+    <lightning-button variant="brand"   label={clickedButtonLabel} title="Show" onclick={handleClick} class="slds-m-left_x-small"></lightning-button> 
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+        <thead>
+        <tr >
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Name
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset">
+                   Email
+                </a>
+            </th>
+           
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    City
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Country
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Phone
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Status
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <template for:each={testitems} for:item="item">
+            <tr class="slds-hint-parent" key={item.Id} >
+                <td data-label="Book Name">
+                    <div class="slds-cell-wrap">{item.Name__c}</div>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong>{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    
+                                    <template if:true={boolVisible}>  
+                                        <div >  {cartItem.BookName__c}</div>  
+                                    </template>  
+                                    
+                                   </li>
+                            </template>
+                        </ul>
+                    </div>
+                </td>
+                <td data-label="Email">
+                    <div class="slds-cell-wrap">{item.Email__c}</div>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong>{text3}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    <template if:true={boolVisible}>  
+                                        <div >  {cartItem.PriceBooks__c}</div>  
+                                          
+                                    </template>  
+                                    
+                                   </li>
+                            </template>
+                        </ul>
+                    </div>
+                </td>
+               
+                <td data-label="Quantity">
+                    <div class="slds-cell-wrap">{item.City__c} </div>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong>{text2}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    <template if:true={boolVisible}>  
+                                        <div >  {cartItem.Quantity__c}</div>  
+                                    </template>  
+                                   </li>
+                            </template>
+                        </ul>
+                  
+                    </div>
+                </td>
+                <td data-label="Country" >
+                    <div class="slds-cell-wrap">{item.Country__c}</div>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong class="vis">{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    <template if:true={boolVisible}>  
+                                        <div class="vis"> {cartItem.Quantity__c}</div>   
+                                    </template>  
+                                   </li>
+                            </template>
+                        </ul>
+                    </div>
+                </td>
+                <td data-label="Phone">
+                    <div class="slds-cell-wrap">{item.phone__c}</div>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong class="vis">{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                
+                                <li key={cartItem.Id}>
+                                    
+                                    <template if:true={boolVisible}>  
+                                        <div class="vis"> {cartItem.Quantity__c} </div>   
+                                    </template>  
+                                   </li>
+                            </template>
+                        </ul>
+                       
+                    </div>
+                </td>
+               
+                <td data-label="Phone">
+                    <div class="slds-cell-wrap">{item.Status__c}</div>
+                    <br>
+                    <div> 
+                        <ul>
+                            <strong class="vis">{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                
+                                <li key={cartItem.Id}>
+                                    
+                                    <template if:true={boolVisible}>  
+                                        <div class="vis"> {cartItem.Quantity__c} </div>  
+                                          
+                                    </template>  
+                                    
+                                   </li>
+                            </template>
+                        </ul>
+                       
+                    </div>
+                </td>
+                 </tr>
+        </template>
+     
+    </tbody>
+</table>
+</template>
