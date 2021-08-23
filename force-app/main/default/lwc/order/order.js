@@ -104,6 +104,7 @@ export default class userDetails extends LightningElement {
         if (data) {
             this.Items = data
             this.tableLength = data.length
+            console.log(data);
 
         } else if (error) {
             this.showToast('ERROR', error.body.message, 'error')
@@ -136,6 +137,9 @@ export default class userDetails extends LightningElement {
         this.subscription = subscribe(this.messageContext, messageChannel, (msg) => this.refresh(msg))
     }
 
+    text = 'Dear '
+    textBody = 'Thank you for order in our book store '
+    textBody2 = ' The package will be dispatched within 3 business days '
 
     handleAprove(evt) {
         evt.preventDefault();
@@ -153,12 +157,16 @@ export default class userDetails extends LightningElement {
 
             publish(this.messageContext, messageChannel, messagePayload)
 
-            const recordInput = { body: this.body, toSend: this.email, subject: this.subject }  //You can send parameters
+
+
+            const recordInput = { body: this.textBody + this.Items.map((i) => i.BookName__c + i.Quantity__c + ' x ') + this.textBody2, toSend: this.email, subject: this.text + this.name }
             sendEmailToController(recordInput)
                 .then(() => {
-                    //If response is ok
+                    console.log('hi');
+
+                    console.log(recordInput);
                 }).catch(error => {
-                    //If there is an error on response
+
                 })
 
 
