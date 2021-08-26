@@ -12,10 +12,11 @@ import assignCartItemsToOrder from '@salesforce/apex/showOrder.assignCartItemsTo
 import allOrders from '@salesforce/apex/showOrder.allOrders';
 import sendEmailToController from '@salesforce/apex/ControllerLwcExample.sendEmailToController';
 import uId from '@salesforce/user/Id';
+import { NavigationMixin } from 'lightning/navigation';
 
 
 
-export default class userDetails extends LightningElement {
+export default class userDetails extends NavigationMixin(LightningElement) {
     subscription = null;
     @track error;
     @track Items = [];
@@ -176,7 +177,13 @@ export default class userDetails extends LightningElement {
             console.log(error);
         })
 
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                pageName: 'orders'
+            },
 
+        });
 
     }
     showToast(title, message, variant) {

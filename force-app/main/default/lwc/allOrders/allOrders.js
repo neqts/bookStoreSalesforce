@@ -61,12 +61,14 @@ export default class AllOrders extends LightningElement {
             this.text = "Name:"
             this.text2 = 'Quantity:'
             this.text3 = 'Price:'
-            return this.text4 = 'User:'
+            this.text4 = 'User:'
+            return this.text5 = 'Summary Price:'
         } else if (this.name === false) {
             this.text = ''
             this.text2 = ''
             this.text3 = ''
-            return this.text4 = ''
+            this.text4 = ''
+            return this.text5 = ''
         }
     }
 

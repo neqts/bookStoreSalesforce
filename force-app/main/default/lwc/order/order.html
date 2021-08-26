@@ -1,6 +1,6 @@
 <template>
-    <form >
-        <lightning-input label='Name: ' variant='label-inline' value={name} type='text' required onchange={handleNameChange}></lightning-input>
+    <form class="formP">
+        <lightning-input label='Name: ' variant='label-inline'  type='text' required onchange={handleNameChange}></lightning-input>
         <lightning-input label="Email: " variant='label-inline' type='email' required onchange={handleEmailChange}></lightning-input>
         <lightning-input label='Phone: ' variant='label-inline' type='phone' onchange={handlePhoneChange}></lightning-input>
         <lightning-input type='text' variant='label-inline' value={street} label='Street: ' required
@@ -17,8 +17,8 @@
         onchange={handleCityChange}></lightning-input>
     <lightning-input type='text' variant='label-inline' value={country} label='Country: ' required
         onchange={handleCountryChange}></lightning-input>
-        <h1>Your order:</h1>
-        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <h1 class='mainText'>Your order:</h1>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered " >
             <thead>
                 <tr class="slds-line-height_reset">
                    
@@ -30,6 +30,9 @@
                     </th>
                     <th class="" scope="col">
                         <div class="slds-truncate" title="Last Name">Quantity</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Last Name">CartId</div>
                     </th>
                   
                 </tr>
@@ -47,13 +50,19 @@
                         <th scope="col">
                             <div>{item.Quantity__c}</div>
                         </th>
+                        <th scope="col">
+                            <div>{item.Name}</div>
+                        </th>
                      
                     </tr>
                 </template>
             </tbody>
         </table>
-        Total:{total} <br>
-
-        <lightning-button label='Get order' onclick={handleAprove} type='submit'></lightning-button>
+        <div class='extra'>
+        <div class='total'>
+        Total:{total} 
+    </div>
+        <button label='Get order' onclick={handleAprove} type='submit' class="btn">ORDER</button>
+    </div>
     </form>
 </template>

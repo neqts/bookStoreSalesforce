@@ -1,7 +1,7 @@
 <template>
     <lightning-card title={bookName} icon-name="utility:notebook">
         <div slot="actions">
-            <lightning-button label="Full Details" class="details" onclick={fullDetails}></lightning-button>
+         
         </div>
       
 
@@ -33,10 +33,10 @@
                         <span class="container">{bookPrice}$</span>
                     </div>
                     <div slot="actions" >
-                        <lightning-input label="Enter the quantity" onchange={handleFieldChange}></lightning-input>
+                        <lightning-input label="Enter the quantity" class='cartLabel' onchange={handleFieldChange}></lightning-input>
                     </div>
                     <div slot="actions" class="buy">
-                        <lightning-button label="Add to cart" onclick={buy}></lightning-button>
+                        <button label="Add to cart" class='btn'  onclick={buy}>ADD TO CART</button>
                     </div>
                 </div>
             </lightning-layout-item>

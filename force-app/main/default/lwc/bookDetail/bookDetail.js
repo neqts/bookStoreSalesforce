@@ -28,12 +28,21 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
             const messagePayload = {
                 status: 'refresh'
             }
+
             publish(this.messageContext, messageChannel, messagePayload)
+
             this.showToast('Success', 'Review Record Updated', 'success');
 
         }).catch((error) => {
             this.showToast('Error', JSON.stringify(error), 'error');
         })
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                pageName: 'cart'
+            },
+
+        });
     }
 
 

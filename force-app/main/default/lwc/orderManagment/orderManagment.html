@@ -1,0 +1,75 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+        <thead>
+        <tr >
+           
+          
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Name
+                </a>
+            </th>
+            
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset">
+                   Email
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Summary Price
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    User
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Status
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <template for:each={testitems} for:item="item">
+            <tr class="slds-hint-parent" key={item.Id} >
+             
+                <td>
+                    <div class="slds-cell-wrap">{item.Name__c}</div>
+                </td>
+                <td>
+                    <div class="slds-cell-wrap">{item.Email__c}</div>
+                </td>
+                <td>
+                    <div class="slds-cell-wrap">{item.Summary_Price__c}</div>
+                </td>
+                <td>
+                    <div class="slds-cell-wrap">{item.User__c}</div>
+                </td>
+                <td>
+                    <div class="slds-cell-wrap">
+                        <lightning-record-edit-form 
+                        object-api-name={objectApiName}
+                        record-id={item.Id}>
+                        <div class="flex">
+                            <lightning-input-field
+                                field-name={status} variant = "label-hidden" > 
+                            </lightning-input-field>
+                           
+                                <lightning-button
+                                    variant="brand"
+                                    type="submit"
+                                    label="Save">
+                                </lightning-button>
+                            </div>
+                    </lightning-record-edit-form>
+                    </div>
+                </td>
+                </tr>
+                </template>
+        </tbody>
+        </table>
+    
+</template>

@@ -6,10 +6,10 @@ import showCartItems from '@salesforce/apex/showCart.showCartItems';
 import { refreshApex } from '@salesforce/apex';
 import { deleteRecord } from 'lightning/uiRecordApi';
 import uId from '@salesforce/user/Id';
+import { NavigationMixin } from 'lightning/navigation';
 
 
-
-export default class Cart extends LightningElement {
+export default class Cart extends NavigationMixin(LightningElement) {
     subscription = null;
     userId = uId;
 
@@ -75,6 +75,16 @@ export default class Cart extends LightningElement {
             variant: variant,
         });
         this.dispatchEvent(evt);
+    }
+
+    handleClick() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                pageName: 'order'
+            },
+
+        });
     }
 
 }

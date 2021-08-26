@@ -27,8 +27,10 @@ public static List<Cart__c> allOrdersWithoutExceptions(){
 @AuraEnabled(cacheable=true)
 public static List<Order__c> allOrdersSumarry(){
    return [Select 
+   Id,
  createddate,
   Summary_Price__c,
+  User__c,
    Status__c,
    Name__c,
    street__c,
