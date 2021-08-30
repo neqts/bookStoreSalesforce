@@ -3,7 +3,14 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import allOrdersSumarry from '@salesforce/apex/showOrder.allOrdersSumarry';
 import { MessageContext, subscribe } from 'lightning/messageService';
 import messageChannel from "@salesforce/messageChannel/messageDemo__c";
+import OBJECT_API_NAME from '@salesforce/schema/Order__c';
+import EMAIL from '@salesforce/schema/Order__c.Email__c';
+import NAME from '@salesforce/schema/Order__c.Name__c';
+import CITY from '@salesforce/schema/Order__c.City__c';
+import COUNTRY from '@salesforce/schema/Order__c.Country__c';
+import PHONE from '@salesforce/schema/Order__c.Phone__c';
 import { refreshApex } from '@salesforce/apex';
+import { deleteRecord } from 'lightning/uiRecordApi';
 export default class AllOrders extends LightningElement {
 
 
@@ -25,10 +32,14 @@ export default class AllOrders extends LightningElement {
         this.testresponse = response
         if (data) {
             this.testitems = data
-            console.log(data);
+            this.check()
         } else if (error) {
             this.showToast('ERROR', error.body.message, 'error')
         }
+    }
+
+    check() {
+        this.testitems = this.testitems.map((i) => ({ ...i, statusCheck: i.Status__c === "New" }))
     }
 
     refresh(msg) {
@@ -42,6 +53,10 @@ export default class AllOrders extends LightningElement {
         subscribe(this.msg, messageChannel, (msg) => this.refresh(msg))
     }
 
+    handleSubmit() {
+        this.template.querySelectorAll('lightning-record-edit-form').forEach((i) => i.submit())
+
+    }
 
 
 
@@ -91,5 +106,73 @@ export default class AllOrders extends LightningElement {
 
         }
         this.show()
+    }
+
+
+    removeRecord(event) {
+        deleteRecord(event.target.dataset.id).then(() => {
+            refreshApex(this.testresponse);
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Record deleted successfully',
+                    variant: 'success'
+                })
+            )
+        })
+    }
+
+
+
+
+
+    get objectApiName() {
+        try {
+            return OBJECT_API_NAME;
+
+        } catch (error) {
+            return 'NA';
+        }
+    }
+
+    get email() {
+        try {
+            return EMAIL;
+
+        } catch (error) {
+            return 'NA';
+        }
+    }
+    get nameText() {
+        try {
+            return NAME;
+
+        } catch (error) {
+            return 'NA';
+        }
+    }
+    get city() {
+        try {
+            return CITY;
+
+        } catch (error) {
+            return 'NA';
+        }
+    }
+    get country() {
+        try {
+            return COUNTRY;
+
+        } catch (error) {
+            return 'NA';
+        }
+    }
+    get phone() {
+        try {
+            return PHONE;
+
+        } catch (error) {
+            return 'NA';
+        }
     }
 }

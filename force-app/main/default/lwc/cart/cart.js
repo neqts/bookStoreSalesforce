@@ -83,7 +83,6 @@ export default class Cart extends NavigationMixin(LightningElement) {
             attributes: {
                 pageName: 'order'
             },
-
         });
     }
 

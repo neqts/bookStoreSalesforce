@@ -1,7 +1,9 @@
 .header{
-    font-family: monospace;
-
-    font-size: 1rem;
+    
+    display: flex;
+    font-family: 'Montserrat';
+    justify-content: center;
+    font-size: 0.8rem;
 }
 .space{
     margin:30px;

@@ -3,11 +3,7 @@
         <lightning-card  >
             <lightning-layout horizontal-align="center"  >
                 <div class="slds-p-vertical_medium">
-               
-                <lightning-layout-item class="space"><h1 class="header">Search by type</h1> <c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test></lightning-layout-item>
-              
-                
-              
+                <lightning-layout-item class="space"><h1 class="header">Search by type:</h1> <c-book-Search-Form-Test onbooktypeselect={bookTypeSelectHandler}></c-book-Search-Form-Test></lightning-layout-item>
                    <c-magazine-search-result book-type-id={bookTypeId} ></c-magazine-search-result>
             </div>
             </lightning-layout>

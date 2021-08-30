@@ -4,16 +4,18 @@
             <lightning-record-form fields={fields} mode="view" density="compact" object-api-name={objectField} 
             record-id={blogId}></lightning-record-form>
             <lightning-layout class="flex">
-            <lightning-layout-item>  <lightning-button 
+            <lightning-layout-item>  <button 
                 variant="success"  
                 label="Create"   
+                class="btn"
                 icon-name="utility:record_create" 
-                onclick={createNewBlogPost}></lightning-button></lightning-layout-item>
-            <lightning-layout-item class="slds-m-left_large"> <lightning-button variant="destructive" 
+                onclick={createNewBlogPost}>CREATE</button></lightning-layout-item>
+            <lightning-layout-item class="slds-m-left_large"> <button variant="destructive" 
                 label="Delete"
+                class="btn"
                 icon-name="utility:delete"
-                onclick={deleteBlogPost}>
-            </lightning-button></lightning-layout-item>
+                onclick={deleteBlogPost}>DELETE
+            </button></lightning-layout-item>
         </lightning-layout>
         
    </div>

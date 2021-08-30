@@ -14,8 +14,8 @@ export default class OrderManagment extends LightningElement {
         const { data, error } = response;
         this.testresponse = response
         if (data) {
-            this.testitems = data
-            console.log(data);
+            this.testitems = [...data]
+            this.check()
         } else if (error) {
             this.showToast('ERROR', error.body.message, 'error')
         }
@@ -51,6 +51,16 @@ export default class OrderManagment extends LightningElement {
             return 'NA';
         }
     }
+
+    check() {
+        this.testitems = this.testitems.map((i) => ({ ...i, statusCheck: i.Status__c === "New" }))
+    }
+
+
+    handleSave() {
+        this.template.querySelectorAll('lightning-record-edit-form').forEach((i) => i.submit())
+    }
+
 
 
 }

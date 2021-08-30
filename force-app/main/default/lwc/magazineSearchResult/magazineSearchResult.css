@@ -8,36 +8,33 @@
     color:white;
     padding:10px;
 }
-
-
-
-.text{
-    display:block;
+.flex{
+    display: flex;
+  
 }
-.ex{
-    margin-bottom:30px;
-    padding:30px;
-}
-.test{
-    width:100%;
-    display:flex;
+.main{
+    padding: 30px;
     justify-content: center;
+    align-items: center;
 }
-.center{
-display:flex;
-justify-content: center;
-margin-bottom:20px;
+
+.btn{
+margin: 14px;
+    background: #222;
+    border: none;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family:cursive;
+    text-transform: uppercase;
+    font-weight: 300;
+    line-height: 1.2;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    text-transform: uppercase;
+    min-height: 38px;
+    padding: 8px;
+    font-size: 0.7rem;
 }
-.noodle{
-    margin-bottom: 20px;;
-}
-.nodawaj{
-margin-bottom:30px;
-}
-form{
-margin-bottom: 40px;
-}
-.block{
-width:40px;
-height:40px
+.btn:hover{
+    background: rgb(92, 92, 92);
 }

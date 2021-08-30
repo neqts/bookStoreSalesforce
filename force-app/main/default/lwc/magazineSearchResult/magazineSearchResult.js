@@ -45,17 +45,6 @@ export default class MagazineSearchResult extends LightningElement {
     }
 
 
-    // bookresponse
-    // @wire(getBooks, { bookTypeId: '$bookTypeId', search: '$searchType' })
-    // wiredBooks(response) {
-    //     const { data, error } = response;
-    //     this.bookresponse = response
-    //     if (data) {
-    //         this.books = data
-    //     } else if (error) {
-    //         this.showToast('ERROR', error.body.message, 'error')
-    //     }
-    // }
 
 
     showToast(title, message, variant) {
