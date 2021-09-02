@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>bookFinderAdminMessageChannel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Message channel for Bookstore book gallery</description>
+    <lightningMessageFields>
+        <fieldName>bookId</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>status</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>blogId</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>cartId</fieldName>
+    </lightningMessageFields>
+
+</LightningMessageChannel>

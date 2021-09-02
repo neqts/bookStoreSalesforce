@@ -1,0 +1,83 @@
+<template>
+    <div class="slds-box slds-theme--default">
+        <div class="slds-text-color_inverse slds-text-heading_large" style="padding:0.5rem;background:#000000">        
+            
+Cart
+        </div>
+        <div class="slds-float_right">        
+           
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset">
+                            Book Name
+                        </a>
+                    </th>
+                   
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" >
+                            Price
+                        </a>
+                    </th>
+                   
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" >
+                            Quantity
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" >
+                          DELETE
+                        </a>
+                    </th>
+                   
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={Items} for:item="item">
+                    <tr class="slds-hint-parent" key={item.Id} >
+                       
+                       
+                        <td data-label="Book Name">
+                            <div class="slds-cell-wrap">{item.BookName__c}</div>
+                        </td>
+                       
+                        <td data-label="Quantity">
+                            <div class="slds-cell-wrap">{item.PriceBooks__c}$</div>
+                        </td>
+                      
+                        <td data-label="Quantity">
+                            <div class="slds-cell-wrap">{item.Quantity__c}</div>
+                        </td>
+                      
+                        <td data-label="Quantity">
+                            <lightning-button variant="destructive" 
+                            label="Delete"
+                            icon-name="utility:delete"
+                            icon-position="right"
+                            onclick={removeRecord}
+                            data-id={item.Id}>
+                        </lightning-button>
+                        </td>
+                      
+                       
+                        
+                       
+                    </tr>
+                </template>
+             
+            </tbody>
+        </table>
+        <div class="main">
+            <div class="Orders">
+       {text} {tableLength}
+    </div>
+    <button class='btn' onclick={handleClick}>Order</button>
+</div>
+       
+          
+    </div>
+</template>

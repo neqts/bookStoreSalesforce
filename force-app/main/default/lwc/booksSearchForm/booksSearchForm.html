@@ -1,0 +1,12 @@
+<template>
+    <lightning-card>
+        <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search" value={bookName}>
+
+        </lightning-input>
+        <template for:each={bookList} for:item="bookObj" for:index="index">
+            <option key={bookObj.Id} >{bookObj.Author__c}
+            </option>
+        </template>
+    </lightning-card>
+    
+</template>

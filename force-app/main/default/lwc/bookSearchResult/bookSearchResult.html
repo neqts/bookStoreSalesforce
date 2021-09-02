@@ -1,0 +1,18 @@
+<template>
+    <lightning-layout multiple-rows horizontal-align="center">
+        <template if:true={booksFound}>
+        <template for:each={books} for:item="book">
+            <lightning-layout-item key={book.Id} padding="around-small" size="12"  large-device-size="3" medium-device-size="4" small-device-size="6" >
+                <c-book-tile book={book} onbookselect={bookSelectHandler} book-selected-id={selectedBookId}></c-book-tile>
+
+            </lightning-layout-item>
+            
+        </template>
+    </template>
+    <template if:false={booksFound}>
+        <div class="slds-align_absolute-center">
+        No Books Found
+    </div>
+    </template>
+    </lightning-layout>
+</template>

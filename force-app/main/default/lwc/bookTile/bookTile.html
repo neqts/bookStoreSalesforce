@@ -1,0 +1,25 @@
+<template>
+    <a onclick={handleBookSelect}>
+        <div class={isBookSelected}>
+            <img src={book.PhotoURL__c} class="book slds-align_absolute-center" style="max-width: 220px;max-height:220px;">
+            <div>
+                <p class="title slds-align_absolute-center">
+                    {book.Name}
+                    
+                </p>
+                <p class="author slds-align_absolute-center">
+                    {book.Author__c}
+                </p>
+                <p class="type slds-align_absolute-center">
+                    {book.Type__c}
+                </p>
+
+                <p class="describe slds-align_absolute-center">
+                    {book.Describe__c}
+                </p>
+
+                
+            </div>
+        </div>
+    </a>
+</template>

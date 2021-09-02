@@ -1,0 +1,58 @@
+<template>
+    <lightning-layout multiple-rows>
+        <div class='slds-p-vertical_medium '>
+      <lightning-layout-item   >
+  
+        <lightning-layout-item >
+            <lightning-layout-item  class="slds-align_absolute-center " >
+                <template if:false={bookFound}>
+                    <div class="slds-align_absolute-center">
+                    No books found
+                    </div>
+                </template>
+                <template if:true={quantityFound}>
+                <h1 class={test}>Total:{magazineQuantity.quntity}</h1>
+                </template>
+                <template if:false={quantityFound}>
+                    No Type chosen
+                </template>
+            </lightning-layout-item>
+      
+        <br>
+        <br>
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" class="flex">
+            <template if:true={bookFound} >
+                <template for:each={books} for:item="book">
+                    <lightning-layout-item key={book.Id} class="main">
+                        {book.Name}
+                    <lightning-record-edit-form  onsuccess={handleSave} object-api-name={objectField} 
+                         record-id={book.Id} >
+                            <lightning-input-field
+                                field-name={quantityField}>
+                            </lightning-input-field>
+                                <lightning-input-field
+                                field-name={priceField}>
+                                </lightning-input-field>
+                                        <div >
+                                            <button type='submit' onclick={refresh} variant='success' class="btn" label='Save'>SAVE</button>
+                                            <button type='reset' variant='destructive-text' class="btn" label='Reset'>RESET</button>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </div>
+                </lightning-record-edit-form>
+                    </lightning-layout-item>
+                </template>
+            </template>
+            </lightning-layout-item>
+        </lightning-layout>
+          
+        </lightning-layout-item>
+</lightning-layout-item>
+</div>
+</lightning-layout>
+</template>

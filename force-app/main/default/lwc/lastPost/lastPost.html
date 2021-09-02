@@ -1,0 +1,14 @@
+<template>
+    <lightning-card >
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" padding="around-small" >
+                    <template for:each={main} for:item="post" class="main">
+                            <c-blog-main key={post.Id} post-details={post}></c-blog-main>
+                        </template>
+                        
+                    </lightning-layout-item>
+                    <button class="btn" onclick={handleClick}>READ MORE </button>
+                </lightning-layout>
+            
+                </lightning-card>
+</template>

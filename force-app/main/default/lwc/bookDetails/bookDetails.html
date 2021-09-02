@@ -1,0 +1,43 @@
+<template>
+    <template if:true={bookFound}>
+        <lightning-card>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size='12'>
+            <lightning-tabset active-tab-value={activeTab}>
+                <lightning-tab label="Book Details" value="1" onactive={handleActive}>
+                        <c-book-detail book={book}></c-book-detail>
+                </lightning-tab>
+                <lightning-tab label="Add Book Review"  value="2" onactive={handleActive}>
+                        <c-add-book-review book-id={bookId} onreviewadded={reviewAddedHandler}></c-add-book-review>
+                </lightning-tab>
+                <lightning-tab label="Reviews" value="3" onactive={handleActive}>
+                    <c-book-reviews book-id={bookId}></c-book-reviews>
+                </lightning-tab>
+                <!-- <lightning-tab label="Edit Form" value="4" onactive={handleActive}>
+                    <c-book-form book-id={bookId}></c-book-form>
+                </lightning-tab> -->
+                <!-- <lightning-tab label="Edit Blog"  value="5" onactive={handleActive}>
+                    <c-blog-form blog-id={blogId}></c-blog-form>
+                </lightning-tab>
+                <lightning-tab label="Cart" value="6" onactive={handleActive}>
+                    <c-cart ></c-cart>
+                </lightning-tab>
+                <lightning-tab label="Magazine Managment"  value="7" onactive={handleActive}>
+                   <c-magazine-managment></c-magazine-managment>
+                </lightning-tab>
+                <lightning-tab label="Order" value="8" onactive={handleActive}>
+                    <c-order></c-order>
+                 </lightning-tab>
+              
+                 <lightning-tab label="Order History" value="10" onactive={handleActive}>
+                    <c-all-Orders></c-all-Orders>
+                 </lightning-tab>
+                
+                  -->
+               
+            </lightning-tabset>
+        </lightning-layout-item>
+    </lightning-layout>
+</lightning-card>
+</template>
+</template>

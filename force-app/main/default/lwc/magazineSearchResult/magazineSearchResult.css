@@ -1,0 +1,40 @@
+.red{
+    background:red;
+    color:white;
+    padding:10px;
+}
+.green{
+    background:green;
+    color:white;
+    padding:10px;
+}
+.flex{
+    display: flex;
+  
+}
+.main{
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+margin: 14px;
+    background: #222;
+    border: none;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family:cursive;
+    text-transform: uppercase;
+    font-weight: 300;
+    line-height: 1.2;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    text-transform: uppercase;
+    min-height: 38px;
+    padding: 8px;
+    font-size: 0.7rem;
+}
+.btn:hover{
+    background: rgb(92, 92, 92);
+}

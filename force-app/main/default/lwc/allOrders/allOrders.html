@@ -1,0 +1,277 @@
+<template>
+    
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+        <thead>
+        <tr >
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Name
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset">
+                   Email
+                </a>
+            </th>
+           
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    City
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Country
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Phone
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Status
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Delete
+                </a>
+            </th>
+            <th class="" scope="col">
+                <a class="slds-th__action slds-text-link_reset" >
+                    Save
+                </a>
+            </th>
+        </tr>
+        
+    </thead>
+    
+    <tbody>
+        <template for:each={testitems} for:item="item">
+            <tr class="slds-hint-parent" key={item.Id} >
+                <td data-label="Book Name">
+                    <template if:true={item.statusCheck}>
+                        <lightning-record-edit-form 
+                        object-api-name={objectApiName}
+                        record-id={item.Id}>
+                        <div class="flex">
+                            <lightning-input-field
+                                field-name={nameText} variant = "label-hidden" > 
+                            </lightning-input-field>
+                           
+                              
+                            </div>
+                        </lightning-record-edit-form>
+                     </template>
+                    <template if:false={item.statusCheck}>
+                        {item.Name__c}
+                        </template>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong>{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    
+                                    <template if:true={boolVisible}>  
+                                        <div >  {cartItem.BookName__c}</div>  
+                                    </template>  
+                                    
+                                   </li>
+                            </template>
+                        </ul>
+                    </div>
+                </td>
+                <td data-label="Email">
+                    <template if:true={item.statusCheck}>
+                        <lightning-record-edit-form 
+                        class="test"
+                        object-api-name={objectApiName}
+                        record-id={item.Id}>
+                        <div class="flex">
+                            <lightning-input-field
+                                field-name={email} variant = "label-hidden" > 
+                            </lightning-input-field>
+                           
+                              
+                            </div>
+                    </lightning-record-edit-form>
+                    </template>
+                    <template if:false={item.statusCheck}>
+                        {item.Email__c}
+                        </template>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong>{text3}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    <template if:true={boolVisible}>  
+                                        <div >  {cartItem.PriceBooks__c}</div>  
+                                          
+                                    </template>  
+                                    
+                                   </li>
+                            </template>
+                        </ul>
+                    </div>
+                </td>
+               
+                <td data-label="Quantity">
+                    <template if:true={item.statusCheck}>
+                        <lightning-record-edit-form 
+                        object-api-name={objectApiName}
+                        record-id={item.Id}>
+                        <div class="flex">
+                            <lightning-input-field
+                                field-name={city} variant = "label-hidden" > 
+                            </lightning-input-field>
+                           
+                              
+                            </div>
+                    </lightning-record-edit-form>
+                    </template>
+                    <template if:false={item.statusCheck}>
+                        {item.City__c}
+                        </template>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong>{text2}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    <template if:true={boolVisible}>  
+                                        <div >  {cartItem.Quantity__c}</div>  
+                                    </template>  
+                                   </li>
+                            </template>
+                        </ul>
+                  
+                    </div>
+                </td>
+                <td data-label="Country" >
+                    <template if:true={item.statusCheck}>
+                        <lightning-record-edit-form 
+                        object-api-name={objectApiName}
+                        record-id={item.Id}>
+                        <div class="flex">
+                            <lightning-input-field
+                                field-name={country} variant = "label-hidden" > 
+                            </lightning-input-field>
+                           
+                              
+                            </div>
+                    </lightning-record-edit-form>
+                    </template>
+                    <template if:false={item.statusCheck}>
+                        {item.Country__c}
+                        </template>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong class="vis">{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                <li key={cartItem.Id}>
+                                    <template if:true={boolVisible}>  
+                                        <div class="vis"> {cartItem.Quantity__c}</div>   
+                                    </template>  
+                                   </li>
+                            </template>
+                        </ul>
+                    </div>
+                </td>
+                <td data-label="Phone">
+                    <template if:true={item.statusCheck}>
+                        <lightning-record-edit-form 
+                        object-api-name={objectApiName}
+                        record-id={item.Id}>
+                        <div class="flex">
+                            <lightning-input-field
+                                field-name={phone} variant = "label-hidden" > 
+                            </lightning-input-field>
+                           
+                              
+                            </div>
+                    </lightning-record-edit-form>
+                    </template>
+                    <template if:false={item.statusCheck}>
+                        {item.phone__c}
+                        </template>
+                    <br>
+                    <div>
+                        <ul>
+                            <strong class="vis">{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                
+                                <li key={cartItem.Id}>
+                                    
+                                    <template if:true={boolVisible}>  
+                                        <div class="vis"> {cartItem.Quantity__c} </div>   
+                                    </template>  
+                                   </li>
+                            </template>
+                        </ul>
+                       
+                    </div>
+                </td>
+               
+                <td data-label="Phone">
+                    <div class="slds-cell-wrap">{item.Status__c}</div>
+                    <br>
+                    <div> 
+                        <ul>
+                            <strong class="vis">{text}</strong>
+                            <template for:each={item.Cart__r} for:item="cartItem">
+                                
+                                <li key={cartItem.Id}>
+                                    
+                                    <template if:true={boolVisible}>  
+                                        <div class="vis"> {cartItem.Quantity__c} </div>  
+                                          
+                                    </template>  
+                                    
+                                   </li>
+                            </template>
+                        </ul>
+                       
+                    </div>
+                </td>
+
+                <td data-label="Delete">
+                    <template if:true={item.statusCheck}>
+                    <lightning-button variant="destructive" 
+                    label="Delete"
+                    icon-name="utility:delete"
+                    icon-position="right"
+                    onclick={removeRecord}
+                    data-id={item.Id}>
+                </lightning-button>
+                </template>
+                <template if:false={item.statusCheck}>
+                    </template>
+
+                </td>
+                <td>
+                    <template if:true={item.statusCheck}>
+                    <lightning-button
+                    variant="brand"
+                    type="submit"
+                    label="Save"
+                    onclick={handleSubmit}>
+
+                </lightning-button>
+                </template>
+                <template if:false={item.statusCheck}>
+                    </template>
+                </td>
+                 </tr>
+        </template>
+     
+    </tbody>
+</table>
+<div class="detailsBtn">
+<lightning-button variant="brand"   label={clickedButtonLabel} title="Show" onclick={handleClick} class="slds-m-left_x-small"></lightning-button> 
+</div>
+</template>

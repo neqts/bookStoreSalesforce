@@ -1,0 +1,16 @@
+<template>
+<lightning-card>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small">
+            <lightning-input label="Title" onchange={handleTitleChange}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small">
+            <lightning-input-rich-text label="Content" onchange={handleDescriptionChange}></lightning-input-rich-text>
+        </lightning-layout-item>
+   
+    <lightning-layout-item size="12" padding="around-small">
+        <lightning-button class="slds-m-top_small" variant="brand" label="Add Post" onclick={addPost}></lightning-button>
+    </lightning-layout-item>
+</lightning-layout>
+</lightning-card>
+</template>

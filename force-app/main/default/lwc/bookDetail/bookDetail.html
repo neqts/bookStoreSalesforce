@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title={bookName} icon-name="utility:notebook">
+        <div slot="actions">
+         
+        </div>
+      
+
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" small-device-size="6" medium-device-size="6">
+                <div class="slds-p-horizontal_small">
+                    <div class="bookproperty">
+                        <span class="label main">Author Name:</span>
+                        <lightning-formatted-text value={bookAuthor} class="container"></lightning-formatted-text>
+                    </div>
+                    <div class="bookproperty">
+                        <span class="label main">Book Type:</span>
+                        <lightning-formatted-text value={bookTitle} class="container"></lightning-formatted-text>
+                    </div>
+                    <div class="bookproperty">
+                        <span class="label main">Book Name:</span>
+                        <lightning-formatted-text value={bookName} class="container"></lightning-formatted-text>
+                    </div>
+                    <div class="bookproperty">
+                        <span class="label main">Book Quantity:</span>
+                        <lightning-formatted-number value={bookQuantity} class="container"></lightning-formatted-number>
+                    </div>
+                    <div class="bookproperty">
+                        <span class="label main">Book Description:</span>
+                        <lightning-formatted-text value={bookDescribe} class="container"></lightning-formatted-text>
+                    </div>
+                    <div class="bookproperty">
+                        <span class="label main">Book Price:</span>
+                        <span class="container">{bookPrice}$</span>
+                    </div>
+                    <div slot="actions" >
+                        <lightning-input label="Enter the quantity" class='cartLabel' onchange={handleFieldChange}></lightning-input>
+                    </div>
+                    <div slot="actions" class="buy">
+                        <button label="Add to cart" class='btn'  onclick={buy}>ADD TO CART</button>
+                    </div>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" small-device-size="6" medium-device-size="6">
+                <img src={bookImg} class="book slds-align_absolute-center">
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

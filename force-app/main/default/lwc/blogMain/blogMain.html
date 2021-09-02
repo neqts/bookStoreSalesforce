@@ -1,0 +1,13 @@
+<template>
+    <lightning-card onclick={handleShowDetails}>
+        <p class="cont">
+            <lightning-formatted-rich-text class="title slds-m-bottom_small" value={postDetails.Title__c}>
+            </lightning-formatted-rich-text><br>
+          <span class="date slds-text-body_small content slds-m-bottom_small">
+           <lightning-formatted-date-time value={postDetails.CreatedDate}></lightning-formatted-date-time>  
+             </span>
+        <lightning-formatted-rich-text class="text slds-m-bottom_small" value={postDetails.Content__c}>
+        </lightning-formatted-rich-text>
+    </p> 
+    </lightning-card>
+</template>

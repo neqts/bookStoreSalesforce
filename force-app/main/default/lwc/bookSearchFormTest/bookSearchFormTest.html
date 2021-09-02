@@ -1,0 +1,11 @@
+<template>
+    <lightning-layout horizontal-align="center">
+        <lightning-layout-item padding="horizontal-small">
+           
+            <lightning-combobox name="bookTypes" label="Book Types" placeholder="All Types" value={selectedValue} onchange={handleBookTypeChange} variant="label-hidden" options={bookTypes}></lightning-combobox>
+
+        </lightning-layout-item>
+       
+
+    </lightning-layout>
+</template>
