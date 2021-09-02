@@ -20,7 +20,6 @@ export default class userDetails extends NavigationMixin(LightningElement) {
     subscription = null;
     @track error;
     @track Items = [];
-
     @track name = '';
     @track email = '';
     @track phone = ''

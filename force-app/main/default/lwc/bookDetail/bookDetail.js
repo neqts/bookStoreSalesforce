@@ -36,13 +36,15 @@ export default class BookDetail extends NavigationMixin(LightningElement) {
         }).catch((error) => {
             this.showToast('Error', JSON.stringify(error), 'error');
         })
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                pageName: 'cart'
-            },
 
-        });
+
+        // this[NavigationMixin.Navigate]({
+        //     type: 'comm__namedPage',
+        //     attributes: {
+        //         pageName: 'cart'
+        //     },
+
+        // });
     }
 
 

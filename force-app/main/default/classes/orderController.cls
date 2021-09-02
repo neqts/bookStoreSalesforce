@@ -2,6 +2,15 @@ public with sharing class orderController {
    @AuraEnabled
    public static Id createOrder(String email, Integer price,Integer phone,String street,Integer streetNumber,Integer flatNum,String city,String country,String postalCode,String name){
 
+
+    String userId = UserInfo.getUserId();
+      List<Cart__c> cartItems = [SELECT Id,	Quantity__c,User__c,Books__r.Id FROM Cart__c Where User__c=:userId AND Order__c=:null];
+        for(Cart__c cartItem: cartItems){
+            Books__c bookQuantity = [SELECT Id, Quantity__c FROM Books__c WHERE Id =: cartItem.Books__r.Id];
+            bookQuantity.Quantity__c -= cartItem.Quantity__c;
+            update bookQuantity;
+        }
+
       Order__c order = new Order__c();
        order.User__c = UserInfo.getUserId();
        order.Summary_Price__c = price;
